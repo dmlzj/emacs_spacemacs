@@ -26,7 +26,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(yaml
+   '(nginx
+     yaml
      (javascript :variables javascript-import-tool 'import-js javascript-backend 'tern)
      php
      ;; dart-flutter
@@ -160,7 +161,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -538,6 +539,12 @@ you should place your code here."
   (global-set-key (kbd "C-c d s") 'doxymacs-insert-blank-singleline-comment)
   (global-set-key (kbd "C-c d g") 'doxymacs-insert-grouping-comments)
 
+  ;; org配置
+  ;; 新建主todo
+  (global-set-key (kbd "M-s t") 'org-insert-todo-heading)
+  ;; 建子todo
+  (global-set-key (kbd "M-s r") 'org-insert-todo-subheading)
+
   
   ;; 编程语言设置-----------
   
@@ -614,17 +621,17 @@ you should place your code here."
          auto-mode-alist))
 
   ;; web-mode 缩进
-  (setq web-mode-style-padding 2)
-  (setq web-mode-script-padding 2)
-  (setq web-mode-block-padding 2)
+  ;; (setq web-mode-style-padding 2)
+  ;; (setq web-mode-script-padding 2)
+  ;; (setq web-mode-block-padding 2)
   ;; scss--------------------------
   (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
   (add-to-list 'auto-mode-alist '("\\.wxss\\'" . scss-mode))
 
   ;; dart----------------
-  (add-to-list 'auto-mode-alist '("\\.dart\\'" . dart-mode))
-  (add-hook 'dart-server-hook 'flycheck-mode)
-  (setq dart-server-enable-analysis-server t)
+  (add-hook 'dart-server-hook          'flycheck-mode)
+  (global-set-key (kbd "M-g h") 'flutter-run-or-hot-reload)
+  (global-set-key (kbd "M-g r") 'flutter-run)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
